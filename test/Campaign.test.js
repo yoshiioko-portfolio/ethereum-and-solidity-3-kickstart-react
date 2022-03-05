@@ -42,4 +42,9 @@ describe("Campaigns", () => {
     assert.ok(factory.options.address);
     assert.ok(campaign.options.address);
   });
+
+  it("Marks caller as the campaign manager", async () => {
+    const manager = await campaign.methods.manager().call();
+    assert.equal(accounts[0], manager);
+  });
 });
