@@ -23,12 +23,16 @@ beforeEach(async () => {
       .send({ from: accounts[0], gas: "1000000" })
   );
 
+  // use factory to create an instance of the campaign
   await factory.methods.createCampaign("100").send({
     from: accounts[0],
     gas: "1000000",
   });
 
+  // use factory method to get the campaign's contract address
   [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
+
+  // create a JS representation of the contract that accesses the contract at our deployed address
   campaign = await new web3.eth.Contract(
     JSON.parse(compiledCampaign.interface),
     campaignAddress
