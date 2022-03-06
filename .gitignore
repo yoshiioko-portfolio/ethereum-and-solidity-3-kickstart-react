@@ -1,3 +1,4 @@
 # directories to ignore
 node_modules
 build
+.next
